@@ -9,6 +9,8 @@
 # application spends waiting for IO operations and on how much you wish to
 # to prioritize throughput over latency.
 #
+
+workers ENV.fetch("WEB_CONCURRENCY") {2}
 # As a rule of thumb, increasing the number of threads will increase how much
 # traffic a given process can handle (throughput), but due to CRuby's
 # Global VM Lock (GVL) it has diminishing returns and will degrade the
@@ -32,3 +34,5 @@ plugin :tmp_restart
 # Specify the PID file. Defaults to tmp/pids/server.pid in development.
 # In other environments, only set the PID file if requested.
 pidfile ENV["PIDFILE"] if ENV["PIDFILE"]
+
+
